@@ -41,7 +41,7 @@ namespace Day_8
                         break;
                 }                
             }
-            Console.WriteLine("Found solution: {0}", acc); found = true;;
+            Console.WriteLine("Found solution: {0}", acc); found = true;
         }
 
         static string[] swapInstructions(string[] input, int i){
