@@ -13,12 +13,12 @@ namespace Day_8
         {
             var input = File.ReadAllLines("input.txt");
             for(int i = 0; i < input.Length && !found; i++){
-                runInstructions(swapInstructions(input, i), i);
+                runInstructions(swapInstructions(input, i));
                 swapInstructions(input, i);
             }
         }
 
-        static void runInstructions(string[] input, int index){
+        static void runInstructions(string[] input){
             var ran = new HashSet<int>();
             acc = 0;
             
