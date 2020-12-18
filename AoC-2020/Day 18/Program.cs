@@ -69,7 +69,6 @@ namespace Day_18
                 }
             }
             multiply.Add(temp);
-
             return multiply.Aggregate((a, x) => a * x);
         }
     }
