@@ -37,11 +37,20 @@ namespace Day_21
                         alergenRecipes[alergen] = recipeIngredients;
                     }
                 }
-            }
+            }            
 
             foreach (var recipe in alergenRecipes.OrderBy(x => x.Value.Count))
             {
-                if(recipe.Value.Count == 1) { alergens.AddRange(recipe.Value); }
+                if(recipe.Value.Count == 1) { 
+                    alergens.AddRange(recipe.Value);
+                    foreach(var r in alergenRecipes)
+                    {
+                        if(r.Key != recipe.Key && r.Value.Contains(recipe.Value.First()))
+                        {
+                            r.Value.Remove(recipe.Value.First());
+                        }
+                    }
+                }
                 else
                 {
                     var reduced = recipe.Value.Except(alergens).ToList();
@@ -60,10 +69,10 @@ namespace Day_21
             var ordered = alergenRecipes.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
             foreach(var alergenRecipe in ordered)
             {
-                if (alergenRecipe.Value.Count == 0) {continue;}
-                Console.WriteLine($"Key: {alergenRecipe.Key}, Value: {alergenRecipe.Value.Count}");
+                if (alergenRecipe.Value.Count == 0) {continue;}                
                 CDIlist += "," + string.Join(",", alergenRecipe.Value);
             }
+            
             Console.WriteLine($"Part two: {CDIlist.Trim(',')}");
         }
     }
